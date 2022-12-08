@@ -10,6 +10,7 @@
     <button @click="buy_10inc()">Buy 10 extra clicks</button>
     <button @click="buy_100inc()">Buy 100 extra clicks</button>
     <button @click="buy_max()">Buy max extra clicks</button>
+    <button @click="autocl()">Buy Autoclicker</button>
   </div>
 </template>
 
@@ -44,9 +45,16 @@ export default {
       }
     },
     buy_max() {
-      while (this.clicks > 9) {
-        if (this
+      this.click_inc += this.clicks / 10
+      this.clicks -= this.clicks
+    },
+    autocl() {
+      if (this.click_inc > 1000) {
+        setInterval(this.addCookies, 50);
       }
+    },
+    addCookies() {
+      this.clicks += this.click_inc
     }
   }
 }
